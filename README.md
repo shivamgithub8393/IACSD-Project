@@ -1,5 +1,8 @@
-## after cloning project
-### open STS import server folder as maven existing project 
-### make chnages in java.mai.resources/application.properties file
-### run project with Spring Boot App
+## Steps
+<hr>
+
+* ### Clone the project
+* ### Open STS import server folder as maven existing project 
+* ### Make chnages in java.main.resources/application.properties file
+* ### Run project with Spring Boot App
 
