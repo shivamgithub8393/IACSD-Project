@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,12 +40,11 @@ function Register() {
   };
 
   return (
-    <div>
       <form className={classes.root}>
-        <h1>Register</h1>
+        <Typography  variant="h4" style={{fontWeight:"500"}} >Register</Typography>
         <TextField
           label="Fisrt Name"
-          variant="filled"
+          variant="outlined"
           type="text"
           required
           value={firstName}
@@ -55,7 +54,7 @@ function Register() {
         />
         <TextField
           label="Last Name"
-          variant="filled"
+          variant="outlined"
           type="text"
           required
           value={lastName}
@@ -65,7 +64,7 @@ function Register() {
         />
         <TextField
           label="Email"
-          variant="filled"
+          variant="outlined"
           type="email"
           required
           value={email}
@@ -75,7 +74,7 @@ function Register() {
         />
         <TextField
           label="Password"
-          variant="filled"
+          variant="outlined"
           type="password"
           required
           value={password}
@@ -103,7 +102,6 @@ function Register() {
           </Button>
         </div>
       </form>
-    </div>
   );
 }
 

@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, Container, makeStyles, TextField } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-
     "& .MuiTextField-root": {
-      margin: theme.spacing(2),
-      width: "400px",
-    },
-    "& .MuiButtonBase-root": {
-      margin: theme.spacing(2),
+      // margin: theme.spacing(1),
+      // width: 200,
     },
   },
 }));
@@ -50,49 +42,17 @@ function Login() {
   };
 
   return (
-    <div>
-      <form className={classes.root}>
-        <h1>Login</h1>
+    <Container style={{ marginTop: "2rem" }} maxWidth="sm">
+      <form action="#" method="POST" autoComplete="off">
+        <TextField name="userEmail" label="Email" variant="outlined" />
         <TextField
-          label="Email"
-          variant="filled"
-          type="email"
-          required
-          value={userEmail}
-          onChange={(e) => {
-            setuserEmail(e.target.value);
-          }}
-        />
-        <TextField
+          name="userPassword"
           label="Password"
-          variant="filled"
           type="password"
-          required
-          value={userPassword}
-          onChange={(e) => {
-            setuserPassword(e.target.value);
-          }}
+          variant="outlined"
         />
-        <div>
-          <Button
-            variant="contained"
-            onClick={function () {
-              history.push("/register");
-            }}
-          >
-            Sign Up
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={handleClick}
-          >
-            Sign In
-          </Button>
-        </div>
       </form>
-    </div>
+    </Container>
   );
 }
 
