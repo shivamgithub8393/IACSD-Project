@@ -26,13 +26,13 @@ public class Flight extends BaseEntity {
 	@NotNull
 	@Column(length=10, unique = true)
 	private String flightNo;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="airline_id" )
 	private Airline airline;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="departure_airport_id" )
 	private Airport departureAirport;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="arrival_airport_id" )
 	private Airport arrivalAirport;
 	@NotNull

@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atbs.custom_exception.UserHandlingException;
 import com.atbs.model.Airline;
 import com.atbs.repository.AirlineRepository;
 
@@ -23,6 +24,11 @@ public class AirlineServiceImpl implements IAirlineService {
   public String deleteAirline(int airlineId) {
 	airlineRepo.deleteById(airlineId);
 	return "Airline deleted for Id = " + airlineId;
+  }
+
+  @Override
+  public Airline findAirline(int airlineId) {
+	return airlineRepo.findById(airlineId).orElseThrow(() -> new UserHandlingException("airline Id is invalid"));
   }
 
 }

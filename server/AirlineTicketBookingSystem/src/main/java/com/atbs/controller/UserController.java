@@ -4,33 +4,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atbs.dto.ErrorResponse;
+import com.atbs.dto.FlightSearchRequest;
 import com.atbs.dto.LoginRequest;
+import com.atbs.model.Flight;
 import com.atbs.model.User;
+import com.atbs.service.IFlightService;
 import com.atbs.service.IUserService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 @CrossOrigin
 public class UserController {
   @Autowired
   private IUserService userService;
+  @Autowired
+  private IFlightService flightService;
 
   public UserController() {
 	System.out.println("In constr of " + getClass().getName());
   }
 
-  @PostMapping("/register")
+  @PostMapping("/user/register")
   public ResponseEntity<?> postRegister(@RequestBody User user) {
-	  return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
+	return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
   }
 
-  @PostMapping("/login")
+  @PostMapping("/user/login")
   public ResponseEntity<?> validateUserLogin(@RequestBody LoginRequest user) {
 	System.out.println("in login page " + user);
 //	System.out.println(user.getUserEmail());
@@ -42,6 +50,18 @@ public class UserController {
 	}
   }
 
-  // logout
+//get all flight details
+  @GetMapping("/flights")
+  public ResponseEntity<List<Flight>> getAllFlightDetails() {
+	System.out.println("in get all flight method");
+	return ResponseEntity.ok(flightService.getAllFlight());
+  }
+  
+  // search Flight with some criteria (fromAirport - toAirport , departureTime)
+  @GetMapping("/flights/search")
+  public ResponseEntity<List<Flight>> searchFlight(@RequestBody FlightSearchRequest flight){
+	
+	return null;
+  }
 
 }

@@ -7,18 +7,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atbs.custom_exception.UserHandlingException;
 import com.atbs.dto.ErrorResponse;
+import com.atbs.dto.FlightRequest;
 import com.atbs.dto.ResponseDTO;
 import com.atbs.model.Airline;
 import com.atbs.model.Airport;
+import com.atbs.model.Flight;
 import com.atbs.service.IAirlineService;
 import com.atbs.service.IAirportService;
+import com.atbs.service.IFlightService;
 
 @RestController
 @RequestMapping("/admin")
@@ -28,6 +35,8 @@ public class AdminController {
   private IAirlineService airlineService;
   @Autowired
   private IAirportService airportService;
+  @Autowired
+  private IFlightService flightService;
   
   // add airline 
   @PostMapping("/airline/add")
@@ -66,12 +75,36 @@ public class AdminController {
   }
   
   // add new flight details
-  
+  @PostMapping("/flight/add")
+  public ResponseEntity<?> addFlightDetails(@RequestBody FlightRequest flightReq) {
+	try {
+	  
+	  
+	return new ResponseEntity<>(flightService.addFlight(flightReq), HttpStatus.CREATED);
+	}catch(ConstraintViolationException e) {
+	  return new ResponseEntity<>(new ErrorResponse("Adding Flight failed!!!!!", e.getMessage()),
+			HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+  }
   
   // cancel flight
-  
+  @DeleteMapping("/flight/delete/{flightId}")
+  public ResponseEntity<ResponseDTO> deleteFlight(@PathVariable int flightId){
+	
+	return ResponseEntity.ok(new ResponseDTO(flightService.deleteFlight(flightId)));
+  }
   
   // update flight
-  
+  @PutMapping("/flight/update/{flightId}")
+  public ResponseEntity<?> updateFlightDetails(@PathVariable int flightId, @RequestBody Flight detachedFlight){
+	try {
+	  // check whether flight is present or not
+	Flight transientFlight = flightService.getFlightById(flightId);
+	// if flight is not present it gives error
+	return ResponseEntity.ok(flightService.updateFlight(detachedFlight));
+	}catch(RuntimeException e) {
+	  return new ResponseEntity<>(new UserHandlingException("updating flight details failed"), HttpStatus.BAD_REQUEST);
+	}
+  }
   
 }
