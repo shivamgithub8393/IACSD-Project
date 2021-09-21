@@ -65,7 +65,7 @@ public class AdminController {
 	return ResponseEntity.ok(new ResponseDTO(airportService.deleteAirport(airportId)));
   }
   
-  // add flight
+  // add new flight details
   
   
   // cancel flight
