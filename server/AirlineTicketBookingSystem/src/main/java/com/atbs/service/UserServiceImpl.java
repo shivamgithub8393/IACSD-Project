@@ -12,20 +12,21 @@ import com.atbs.repository.UserRepository;
 @Service
 @Transactional
 public class UserServiceImpl implements IUserService {
-	@Autowired
-	private UserRepository userRepo;
+  @Autowired
+  private UserRepository userRepo;
 
-	public UserServiceImpl() {
-	}
+  public UserServiceImpl() {
+  }
 
-	@Override
-	public LoginResponse validateUser(LoginRequest user) {
-		LoginResponse retUser = userRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
-		return retUser;
-	}
+  @Override
+  public LoginResponse validateUser(LoginRequest user) {
+	return userRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword())
+		.orElseThrow(() -> new RuntimeException("Invalid Email or Password !!!"));
 
-	@Override
-	public User addUser(User user) {
-		return userRepo.save(user);
-	}
+  }
+
+  @Override
+  public User addUser(User user) {
+	return userRepo.save(user);
+  }
 }

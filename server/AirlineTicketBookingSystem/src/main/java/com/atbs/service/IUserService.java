@@ -6,6 +6,5 @@ import com.atbs.model.User;
 
 public interface IUserService {
   LoginResponse validateUser(LoginRequest user);
-
   User addUser(User user);
 }

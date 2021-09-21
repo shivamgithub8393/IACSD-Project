@@ -13,6 +13,7 @@ public class ErrorResponse {
 	private String message;
 	private String errorDetails;
 	private LocalDateTime timeStamp;
+	
 	public ErrorResponse(String message, String errorDetails) {
 		super();
 		this.message = message;

@@ -1,5 +1,7 @@
 package com.atbs.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +13,6 @@ import com.atbs.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
   @Query("select new com.atbs.dto.LoginResponse(u.userEmail, u.password) from User u Where u.userEmail=:email and u.password=:password")
-  LoginResponse findByUserEmailAndPassword(@Param(value = "email") String userEmail,@Param(value = "password") String password);
+  Optional<LoginResponse> findByUserEmailAndPassword(@Param(value = "email") String userEmail,@Param(value = "password") String password);
   
 }
