@@ -40,8 +40,11 @@ function Register() {
   };
 
   return (
+    
       <form className={classes.root}>
-        <Typography  variant="h4" style={{fontWeight:"500"}} >Register</Typography>
+        <Typography variant="h4" style={{ fontWeight: "500" }}>
+          Register
+        </Typography>
         <TextField
           label="Fisrt Name"
           variant="outlined"

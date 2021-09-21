@@ -4,7 +4,7 @@ import {TextField, Typography} from '@material-ui/core';
 function Home() {
   return (
     <div>
-      <Typography variant="h4" color="textPrimary">
+      <Typography variant="h4" color="textPrimary" align="center">
         Airline ticket Booking System
       </Typography>
       <img
