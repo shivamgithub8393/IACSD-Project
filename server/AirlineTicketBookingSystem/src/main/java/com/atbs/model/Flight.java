@@ -30,10 +30,10 @@ public class Flight extends BaseEntity {
 	@JoinColumn(name="airline_id" )
 	private Airline airline;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="departure_airport_id" )
+	@JoinColumn(name="departure_airport_id")
 	private Airport departureAirport;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="arrival_airport_id" )
+	@JoinColumn(name="arrival_airport_id")
 	private Airport arrivalAirport;
 	@NotNull
 	private LocalDateTime departureTime;

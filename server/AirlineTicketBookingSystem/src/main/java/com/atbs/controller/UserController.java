@@ -43,7 +43,12 @@ public class UserController {
 	System.out.println("in login page " + user);
 //	System.out.println(user.getUserEmail());
 	try {
-	  return ResponseEntity.ok(userService.validateUser(user));
+	  User validUser = userService.validateUser(user);
+	  if(validUser.getUserType().equals(user.getUserType())) {
+		return ResponseEntity.ok(validUser);
+	  }
+		  return new ResponseEntity<>(new ErrorResponse("Invalid credentials", "User Type Is Not Valid"), HttpStatus.BAD_REQUEST);
+	  
 	} catch (RuntimeException e) {
 	  System.out.println("err in validate login " + e);
 	  return new ResponseEntity<>(new ErrorResponse("Failed to login", e.getMessage()), HttpStatus.BAD_REQUEST);
@@ -52,16 +57,19 @@ public class UserController {
 
 //get all flight details
   @GetMapping("/flights")
-  public ResponseEntity<List<Flight>> getAllFlightDetails() {
+  public ResponseEntity<?> getAllFlightDetails() {
 	System.out.println("in get all flight method");
 	return ResponseEntity.ok(flightService.getAllFlight());
+//	return new ResponseEntity<>(new ErrorResponse("sssss", "sshnf"), HttpStatus.NOT_FOUND);
   }
-  
+
   // search Flight with some criteria (fromAirport - toAirport , departureTime)
-  @GetMapping("/flights/search")
-  public ResponseEntity<List<Flight>> searchFlight(@RequestBody FlightSearchRequest flight){
-	
-	return null;
+  @PostMapping("/flights/search")
+  public ResponseEntity<List<Flight>> searchFlight(@RequestBody FlightSearchRequest flight) {
+	System.out.println("in search flight method");
+	System.out
+		.println(flight.getArrivalAirportId() + " " + flight.getDepartureAirportId() + " " + flight.getDepartureDate());
+	return ResponseEntity.ok(flightService.searchFlight(flight));
   }
 
 }

@@ -10,10 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,9 @@ public class BookingDetails extends BaseEntity {
 	@Column(length = 10, nullable = false)
 	private Status bookingStatus;
 
-	@OneToOne(mappedBy = "booking")
-	private PaymentDetails paymentDetails;
+	@OneToMany
+	private List<Passenger> passenger;
+	
+//	@OneToOne(mappedBy = "booking")
+//	private PaymentDetails paymentDetails;
 }

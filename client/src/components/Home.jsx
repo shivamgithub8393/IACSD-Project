@@ -13,7 +13,6 @@ function Home() {
         width="100%"
         height="100%"
       />
-      <TextField name="userEmail" label="Email" variant="outlined" />
     </div>
   );
 }

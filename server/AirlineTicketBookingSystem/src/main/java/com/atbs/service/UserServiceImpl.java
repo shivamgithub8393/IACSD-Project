@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atbs.dto.LoginRequest;
-import com.atbs.dto.LoginResponse;
 import com.atbs.model.User;
 import com.atbs.repository.UserRepository;
 
@@ -19,7 +18,7 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public LoginResponse validateUser(LoginRequest user) {
+  public User validateUser(LoginRequest user) {
 	return userRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword())
 		.orElseThrow(() -> new RuntimeException("Invalid Email or Password !!!"));
 

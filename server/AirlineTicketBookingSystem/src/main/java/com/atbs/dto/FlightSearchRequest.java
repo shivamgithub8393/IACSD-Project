@@ -1,5 +1,6 @@
 package com.atbs.dto;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Data
 public class FlightSearchRequest {
-  private String departureAirport;
-  private String arrivalAirport;
-  private LocalDate departureDate;
+  private int departureAirportId;
+  private int arrivalAirportId;
+  private Date departureDate;
 }

@@ -4,26 +4,28 @@ import { Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   menuButton: {
+//     marginRight: theme.spacing(2),
+//   },
+//   title: {
+//     flexGrow: 1,
+//   },
+// }));
 
 function Navbar() {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    // <div className={classes.root}>
       <AppBar position="static">
         <Tabs className="tabs">
           <Tab className="tab" label="Home" component={Link} to="/" />
+          <Tab className="tab" label="Search Flight" component={Link} to="/search" />
+          <Tab className="tab" label="Book Flight" component={Link} to="/book_flight" />
 
           <Tab className="tab" label="About" component={Link} to="/about" />
           <Tab
@@ -41,7 +43,7 @@ function Navbar() {
           />
         </Tabs>
       </AppBar>
-    </div>
+    // </div>
   );
 }
 

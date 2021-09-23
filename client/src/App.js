@@ -5,6 +5,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Search from './components/Search';
+import BookFlight from './components/BookFight'
 import theme from "./utility/CustomTheme"
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
@@ -22,8 +23,12 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/search" exact component={Search} />
+          <Route path="/book_flight" exact component={BookFlight} />
         </Switch>
       </Router>
+
+      {/* testing */}
+
     </ThemeProvider>
   );
 }

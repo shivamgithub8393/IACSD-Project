@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.atbs.custom_exception.UserHandlingException;
 import com.atbs.dto.ErrorResponse;
 import com.atbs.dto.FlightRequest;
+import com.atbs.dto.FlightUpdateRequest;
 import com.atbs.dto.ResponseDTO;
 import com.atbs.model.Airline;
 import com.atbs.model.Airport;
@@ -96,12 +97,9 @@ public class AdminController {
   
   // update flight
   @PutMapping("/flight/update/{flightId}")
-  public ResponseEntity<?> updateFlightDetails(@PathVariable int flightId, @RequestBody Flight detachedFlight){
+  public ResponseEntity<?> updateFlightDetails(@PathVariable int flightId, @RequestBody FlightUpdateRequest updatedFlightData){
 	try {
-	  // check whether flight is present or not
-	Flight transientFlight = flightService.getFlightById(flightId);
-	// if flight is not present it gives error
-	return ResponseEntity.ok(flightService.updateFlight(detachedFlight));
+	return ResponseEntity.ok(flightService.updateFlight(flightId, updatedFlightData));
 	}catch(RuntimeException e) {
 	  return new ResponseEntity<>(new UserHandlingException("updating flight details failed"), HttpStatus.BAD_REQUEST);
 	}
