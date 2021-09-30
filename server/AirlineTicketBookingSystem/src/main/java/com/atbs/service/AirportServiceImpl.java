@@ -1,5 +1,7 @@
 package com.atbs.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,11 @@ public class AirportServiceImpl implements IAirportService {
   public Airport findAirportById(int airportId) {
 	return airportRepo.findById(airportId).orElseThrow(() -> new UserHandlingException("airport Id is invalid"));
 	 
+  }
+
+  @Override
+  public List<Airport> getAllAirports() {
+	return airportRepo.findAll();
   }
 
 }

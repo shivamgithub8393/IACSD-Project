@@ -1,19 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import "./About.css";
 
 function About() {
-  const [data, setData] = useState([]);
-
-  // useEffect(()=> {
-  //   fetch("http://localhost:8080/flights")
-  //   .then(res => res.json())
-  //   .then(data=> console.log(data))
-  // })
   return (
-    <div>
-      <h1>About</h1>
-      
+    <div className="about-section">
+      <h1>About Us Page</h1>
+      <p>
+        Airline ticket Booking System  (ATBS) are systems that allow customer to book flight tickets
+      </p>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

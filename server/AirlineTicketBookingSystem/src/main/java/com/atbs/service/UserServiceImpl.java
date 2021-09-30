@@ -19,7 +19,7 @@ public class UserServiceImpl implements IUserService {
 
   @Override
   public User validateUser(LoginRequest user) {
-	return userRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword())
+	return userRepo.findByUserEmailAndPassword(user.getUsername(), user.getPassword())
 		.orElseThrow(() -> new RuntimeException("Invalid Email or Password !!!"));
 
   }

@@ -1,7 +1,5 @@
 package com.atbs.dto;
 
-import com.atbs.model.UserType;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data 
 public class LoginRequest {
-  private String userEmail;
+  private String username;
   private String password;
-  private UserType userType;
 }

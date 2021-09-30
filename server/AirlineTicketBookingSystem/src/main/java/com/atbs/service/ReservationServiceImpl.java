@@ -83,4 +83,10 @@ public class ReservationServiceImpl implements IReservationService {
 	// flightRepo.save(flight);
     return bookingDetails;
   }
+
+  @Override
+  public List<BookingDetails> getBookingById(int userId) {
+		
+	return bookingRepo.findByUserId(userId);
+  }
 }

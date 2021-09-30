@@ -10,6 +10,7 @@ import com.atbs.model.Flight;
 public interface IFlightService {
   Flight addFlight(FlightRequest flight);
   String deleteFlight(int flightId);
+  
   Flight updateFlight(int flightId, FlightUpdateRequest updatedFlightData);
   // get all flight details
   List<Flight> getAllFlight();

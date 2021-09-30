@@ -1,17 +1,17 @@
+import { Typography } from '@mui/material';
 import React from 'react'
-import {TextField, Typography} from '@material-ui/core';
 
 function Home() {
   return (
     <div>
-      <Typography variant="h4" color="textPrimary" align="center">
-        Airline ticket Booking System
+      <Typography variant="h3"align="center" sx={{color:"black", m:2, fontWeight:"600" }}>
+        Airline Ticket Booking System
       </Typography>
       <img
-        src="images/Airoplane.jpg"
+        src="images/airplane2.jpg"
         alt="Airplane_Image"
         width="100%"
-        height="100%"
+        height="600px"
       />
     </div>
   );

@@ -40,7 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(DataIntegrityViolationException.class)
 	private ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e, WebRequest request) {
 	  System.out.println("handling data integrity exception");
-	  ErrorResponse errResp = new ErrorResponse("Sql exception", request.getDescription(false));
+	  ErrorResponse errResp = new ErrorResponse("Given Data is not Valid", request.getDescription(false));
 	  return new ResponseEntity<ErrorResponse>(errResp, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 

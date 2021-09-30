@@ -1,5 +1,7 @@
 package com.atbs.controller;
 
+import java.util.List;
+
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,27 @@ public class AdminController {
   private IAirportService airportService;
   @Autowired
   private IFlightService flightService;
+  
+//get all airline details
+  @GetMapping("/airlines")
+  public ResponseEntity<List<Airline>> getAllAirline() {
+	System.out.println("in get all airlines method");
+	return ResponseEntity.ok(airlineService.getAllAirlines());
+  }
+  
+//get all flight details
+  @GetMapping("/flights")
+  public ResponseEntity<List<Flight>> getAllFlightDetails() {
+	System.out.println("in get all flight method");
+	return ResponseEntity.ok(flightService.getAllFlight());
+  }
+  
+  // get all airport
+  @GetMapping("/airports")
+  public ResponseEntity<List<Airport>> getAllAirport() {
+	System.out.println("in get all airports method");
+	return ResponseEntity.ok(airportService.getAllAirports());
+  }
   
   // add airline 
   @PostMapping("/airline/add")

@@ -1,9 +1,14 @@
 package com.atbs.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -30,7 +35,21 @@ public class User extends BaseEntity {
   @Column(length=500)
   @NotNull
   private String password;
-  @Enumerated(EnumType.STRING)
-  @Column(length=30)
-  private UserType userType;  
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+  
+  public User(String userEmail, @NotNull String firstName, @NotNull String lastName, @NotNull String password) {
+	super();
+	this.userEmail = userEmail;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.password = password;
+  }
+  
+  
 }
